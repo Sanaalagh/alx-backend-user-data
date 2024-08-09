@@ -40,11 +40,13 @@ def filter_requests() -> None:
     if auth.current_user(request) is None:
         abort(403)
 
+
 @app.errorhandler(404)
 def not_found(error) -> str:
     """ Not found handler
     """
     return jsonify({"error": "Not found"}), 404
+
 
 @app.errorhandler(401)
 def unauthorized(error) -> str:
@@ -60,6 +62,7 @@ def forbidden(error) -> str:
     This error handler is executed by calling abort(403)
     """
     return jsonify({"error": "Forbidden"}), 403
+
 
 if __name__ == "__main__":
     host = getenv("API_HOST", "0.0.0.0")
